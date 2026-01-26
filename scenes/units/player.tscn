@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnlnwg0p4td1"]
+
+[ext_resource type="PackedScene" uid="uid://cfgy6wgynlgvu" path="res://scenes/prefab/unit.tscn" id="1_pkbir"]
+[ext_resource type="PackedScene" uid="uid://bqwmk1b7e3ej" path="res://scenes/units/playerthings/move_node.tscn" id="2_esfxm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_esfxm"]
+
+[node name="Player" groups=["player"] instance=ExtResource("1_pkbir")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_esfxm")
+
+[node name="Camera2D" type="Camera2D" parent="." index="1"]
+
+[node name="moveNode" parent="." index="2" instance=ExtResource("2_esfxm")]
