@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dvibqmwhnvmp1"]
+
+[ext_resource type="Script" uid="uid://choqx1p57hu50" path="res://scripts/resourceDir/BulletResource.cs" id="1_64op6"]
+
+[resource]
+script = ExtResource("1_64op6")
