@@ -1,15 +1,13 @@
 using Godot;
 using System;
+using ggJAM228.scripts.resourceDir;
 
 public partial class FirstMap : Node2D
 {
-	
-	public override void _Ready()
-	{
-	}
+	public UpgradeResource mobAmplifier;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+	public float XP=0;
+
+	
+
 }

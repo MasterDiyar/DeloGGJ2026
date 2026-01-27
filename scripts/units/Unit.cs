@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using ggJAM228.scripts.resourceDir;
 
 public partial class Unit : CharacterBody2D
 {
@@ -10,18 +11,11 @@ public partial class Unit : CharacterBody2D
 		MagicAmplifier = 100f,
 		MeleeAmplifier = 100f,
 		RangedAmplifier = 100f,
-		Defence = 100f;
+		Defence = 100f,
+		XpOnDrop = 1f,
+		Regeneration = 0;
 
 	public float Hp;
-		
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 
 	public void TakeDamage(float damage)
 	{
@@ -31,11 +25,30 @@ public partial class Unit : CharacterBody2D
 			Hp -= damage;
 		if (Hp <= 0)
 			DeferredDeath();
+	}
 
+	public override void _Process(double delta)
+	{
+		Hp +=(Hp < MaxHp) ? (float)delta * Regeneration : 0;
 	}
 
 	public virtual void DeferredDeath()
 	{
-		
+		var map = GetTree().GetFirstNodeInGroup("map") as FirstMap;
+		map.XP += XpOnDrop;
+		CallDeferred("queue_free");
+	}
+
+	public void AddResource(UpgradeResource resource)
+	{
+		UnitSpeed += resource.AddSpeed;
+		MaxHp += resource.AddMaxHp;
+		Damage += resource.AddDamage;
+		Defence += resource.AddSpeed;
+		MagicAmplifier += resource.AddMagicAmplifier;
+		MeleeAmplifier += resource.AddMeleeAmplifier;
+		RangedAmplifier += resource.AddRangedAmplifier;
+		Regeneration += resource.AddRegeneration;
+		Scale += Vector2.One * resource.AddScale;
 	}
 }

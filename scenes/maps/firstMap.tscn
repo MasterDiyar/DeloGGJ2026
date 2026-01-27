@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://b0km4qctkhqp7"]
+[gd_scene load_steps=16 format=4 uid="uid://b0km4qctkhqp7"]
 
 [ext_resource type="TileSet" uid="uid://c8jdlx2ejo5bi" path="res://scenes/resources/mainTileSet.tres" id="1_0gbmu"]
 [ext_resource type="Script" uid="uid://d0qcqr3bw0t4w" path="res://scripts/ui/FirstMap.cs" id="1_4vyi5"]
@@ -13,11 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://cnlnwg0p4td1" path="res://scenes/units/player.tscn" id="9_wgdhv"]
 [ext_resource type="PackedScene" uid="uid://b3270puljcuqi" path="res://scenes/generation/cloud_maker.tscn" id="11_crm4l"]
 [ext_resource type="Texture2D" uid="uid://bx8c2ibk03jvh" path="res://assets/cumans/balbals.png" id="11_nndbb"]
+[ext_resource type="PackedScene" uid="uid://dwcb10i85ic50" path="res://scenes/generation/ruins.tscn" id="14_nqadl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nndbb"]
 radius = 15.033297
 
-[node name="Map" type="Node2D"]
+[node name="Map" type="Node2D" groups=["map"]]
 y_sort_enabled = true
 texture_filter = 3
 script = ExtResource("1_4vyi5")
@@ -311,3 +312,6 @@ position = Vector2(1102, 80)
 scale = Vector2(3.0416665, 2.4999998)
 texturesCount = Vector2i(2, 2)
 Speed = 20.0
+
+[node name="Ruins" parent="." instance=ExtResource("14_nqadl")]
+position = Vector2(740, 261)

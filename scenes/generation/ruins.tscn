@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwcb10i85ic50"]
+
+[ext_resource type="Texture2D" uid="uid://5de4ecwq2387" path="res://assets/tilemap/ruins.png" id="1_xwj2f"]
+[ext_resource type="Script" uid="uid://bm17lrabmf1a6" path="res://scripts/generate/Ruins.cs" id="2_lxwqs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lxwqs"]
+font_size = 48
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxwqs"]
+radius = 41.503014
+
+[node name="Ruins" type="Sprite2D"]
+texture_filter = 3
+scale = Vector2(2, 2)
+texture = ExtResource("1_xwj2f")
+script = ExtResource("2_lxwqs")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -26.0
+offset_top = 68.0
+offset_right = 390.0
+offset_bottom = 205.0
+scale = Vector2(0.125, 0.125)
+text = "Починить 15xp
+для покупки f"
+label_settings = SubResource("LabelSettings_lxwqs")
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 45.5)
+shape = SubResource("CircleShape2D_lxwqs")

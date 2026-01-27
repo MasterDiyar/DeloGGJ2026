@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbam1ot1o6v7j"]
+
+[ext_resource type="PackedScene" uid="uid://7pq2cqno2bwj" path="res://scenes/units/playerthings/choose_card.tscn" id="1_51pgm"]
+[ext_resource type="Texture2D" uid="uid://cei7qoea2r57y" path="res://assets/masks/cursedzabralo.png" id="2_mie18"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_srhqg"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_gwhhj"]
+font_size = 13
+font_color = Color(0.5019608, 0, 1, 1)
+
+[node name="ChooseCard" instance=ExtResource("1_51pgm")]
+
+[node name="Name" parent="VBoxContainer" index="0"]
+text = "Проклятие короля"
+
+[node name="Texture" parent="VBoxContainer" index="1"]
+texture = ExtResource("2_mie18")
+
+[node name="About" parent="VBoxContainer" index="2"]
+text = "Все атрибуты урона повышены+2
+Броня +15"
+label_settings = SubResource("LabelSettings_srhqg")
+
+[node name="RedText" type="Label" parent="VBoxContainer" index="3"]
+layout_mode = 2
+text = "Дальнобойные противники
+стреляют с удвоением"
+label_settings = SubResource("LabelSettings_gwhhj")
