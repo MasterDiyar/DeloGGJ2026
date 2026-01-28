@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c276a8lydcv5x"]
+
+[ext_resource type="PackedScene" uid="uid://baunj4c63pjio" path="res://scenes/weapon/bow.tscn" id="1_evwug"]
+
+[node name="EntityBow" instance=ExtResource("1_evwug")]
+baseDamage = 8.0

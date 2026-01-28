@@ -7,10 +7,10 @@ public partial class Unit : CharacterBody2D
 	[Export] public float
 		UnitSpeed = 100f,
 		MaxHp = 100f,
-		Damage = 100f,
-		MagicAmplifier = 100f,
-		MeleeAmplifier = 100f,
-		RangedAmplifier = 100f,
+		Damage = 10f,
+		MagicAmplifier = 1f,
+		MeleeAmplifier = 1f,
+		RangedAmplifier = 1f,
 		Defence = 100f,
 		XpOnDrop = 1f,
 		Regeneration = 0;

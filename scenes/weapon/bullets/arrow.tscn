@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjjaki5nvjwax"]
+
+[ext_resource type="PackedScene" uid="uid://tnyfwg6cc6yi" path="res://scenes/prefab/bullet.tscn" id="1_xj666"]
+[ext_resource type="Texture2D" uid="uid://du8ibcjca7hj0" path="res://assets/other/arrow.png" id="2_6wb66"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7umds"]
+size = Vector2(15, 8)
+
+[node name="Bullet" instance=ExtResource("1_xj666")]
+Damage = 15.0
+Speed = 250.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_7umds")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_6wb66")

@@ -1,12 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://cl7hdiq0ouaxj"]
 
 [ext_resource type="Script" uid="uid://dhx3esmjumk0v" path="res://scripts/weapons/Weapon.cs" id="1_d7anw"]
-[ext_resource type="Resource" uid="uid://dvibqmwhnvmp1" path="res://scenes/resources/weapon.tres" id="2_btk8i"]
+[ext_resource type="Script" uid="uid://ck6a4imcp8jqo" path="res://scripts/weapons/Launcher.cs" id="2_btk8i"]
 
 [node name="Weapon" type="Node2D"]
 modulate = Color(1, 1, 1, 0.30588236)
 script = ExtResource("1_d7anw")
-bullet_scene = [ExtResource("2_btk8i")]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="launcher" type="Node2D" parent="." node_paths=PackedStringArray("myWeapon")]
+script = ExtResource("2_btk8i")
+myWeapon = NodePath("..")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwcb10i85ic50"]
+[gd_scene load_steps=6 format=3 uid="uid://cg2q8d4db6pjh"]
 
 [ext_resource type="Texture2D" uid="uid://5de4ecwq2387" path="res://assets/tilemap/ruins.png" id="1_xwj2f"]
 [ext_resource type="Script" uid="uid://bm17lrabmf1a6" path="res://scripts/generate/Ruins.cs" id="2_lxwqs"]
+[ext_resource type="PackedScene" uid="uid://baunj4c63pjio" path="res://scenes/weapon/bow.tscn" id="3_3fiff"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lxwqs"]
 font_size = 48
@@ -9,11 +10,14 @@ font_size = 48
 [sub_resource type="CircleShape2D" id="CircleShape2D_lxwqs"]
 radius = 41.503014
 
-[node name="Ruins" type="Sprite2D"]
+[node name="Ruins" type="Sprite2D" node_paths=PackedStringArray("gradeLabel", "area")]
 texture_filter = 3
 scale = Vector2(2, 2)
 texture = ExtResource("1_xwj2f")
 script = ExtResource("2_lxwqs")
+gradeLabel = NodePath("Label")
+area = NodePath("Area2D")
+weaponScene = ExtResource("3_3fiff")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -26.0

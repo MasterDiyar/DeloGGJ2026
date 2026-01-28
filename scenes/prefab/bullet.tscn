@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://tnyfwg6cc6yi"]
+
+[ext_resource type="Script" uid="uid://dlicj4yrenjxf" path="res://scripts/bullets/Bullet.cs" id="1_fysjy"]
+
+[node name="Bullet" type="Area2D"]
+texture_filter = 3
+script = ExtResource("1_fysjy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

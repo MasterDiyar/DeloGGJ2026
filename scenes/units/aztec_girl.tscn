@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvxtj2lb0kfox"]
+
+[ext_resource type="PackedScene" uid="uid://cfgy6wgynlgvu" path="res://scenes/prefab/unit.tscn" id="1_7k3y4"]
+[ext_resource type="Texture2D" uid="uid://bsl4s6uf13llf" path="res://assets/other/aztec.png" id="2_wqukp"]
+[ext_resource type="PackedScene" uid="uid://c276a8lydcv5x" path="res://scenes/weapon/entity_bow.tscn" id="3_wqukp"]
+[ext_resource type="PackedScene" uid="uid://d2ru05glewvcy" path="res://scenes/units/ai.tscn" id="4_76gww"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_76gww"]
+
+[node name="AztecGirl" instance=ExtResource("1_7k3y4")]
+UnitSpeed = 80.0
+Damage = 2.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_76gww")
+
+[node name="Aztec" type="Sprite2D" parent="." index="1"]
+texture_filter = 3
+position = Vector2(0, -5)
+texture = ExtResource("2_wqukp")
+
+[node name="EntityBow" parent="." index="2" instance=ExtResource("3_wqukp")]
+
+[node name="AI" parent="." index="3" instance=ExtResource("4_76gww")]
