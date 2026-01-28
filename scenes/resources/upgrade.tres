@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c3vse57ouvjh7"]
+
+[ext_resource type="Script" uid="uid://bi78lxympvcrh" path="res://scripts/resourceDir/UpgradeResource.cs" id="1_xnrgj"]
+
+[resource]
+script = ExtResource("1_xnrgj")
+AddSpeed = -20.0
+AddDamage = 5.0
+AddMeleeAmplifier = 5.0
+AddMaxHp = 40.0

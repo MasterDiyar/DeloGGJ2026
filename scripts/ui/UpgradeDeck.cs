@@ -3,13 +3,20 @@ using System;
 
 public partial class UpgradeDeck : CanvasLayer
 {
-	// Called when the node enters the scene tree for the first time.
+	[Export] int DeckSize = 3;
+	[Export] private PackedScene[] chooseCards;
+	[Export] HBoxContainer Deck;
+	private ChooseCard[] currentDeck;
+	private RandomNumberGenerator rng;
 	public override void _Ready()
 	{
+		rng = new RandomNumberGenerator();
+		rng.Randomize();
+
+		for (int i = 0; i < DeckSize; i++)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 }
