@@ -4,7 +4,7 @@ using ggJAM228.scripts.resourceDir;
 
 public partial class ChooseCard : Panel
 {
-	[Export] UpgradeResource upgradeResource = new();
+	[Export] public UpgradeResource upgradeResource = new();
 	
-	
+	[Export] public UpgradeResource downgradeResource = new();
 }

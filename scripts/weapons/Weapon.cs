@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using ggJAM228.scripts.resourceDir;
+using ggJAM228.scripts.weapons;
 using Timer = Godot.Timer;
 
 public partial class Weapon : Node2D
@@ -13,17 +14,38 @@ public partial class Weapon : Node2D
 	Timer fireTimer;
 	public Action<float> Fire;
 	public Unit myUnit;
+	Launcher launcher;
 	public override void _Ready()
 	{
+		launcher = GetNode<Launcher>("Launcher");
 		myUnit = GetParent() as Unit;
 		fireTimer = GetNode<Timer>("Timer");
 		fireTimer.Timeout += Timeout;
+		if (myUnit != null)
+		{
+			myUnit.UpdateWeapons += Update;
+			Update();
+		}
+
+	}
+
+	void Update()
+	{
 		multiplier = (weaponType) switch {
-			1 => myUnit.MeleeAmplifier,
-			2 => myUnit.MagicAmplifier,
-			3 => myUnit.RangedAmplifier,
-			_ => 0
-		};
+        	1 => myUnit.modifiers.AddMeleeAmplifier,
+        	2 => myUnit.modifiers.AddMagicAmplifier,
+        	3 => myUnit.modifiers.AddRangedAmplifier,
+        	_ => 0
+        };
+
+		if (weaponType > 1)
+		{
+			foreach (var res in bulletScene)
+			{
+				res.LaunchCount += myUnit.modifiers.AddProjectile;
+			}
+		}
+		launcher.
 	}
 
 	protected virtual void Timeout()

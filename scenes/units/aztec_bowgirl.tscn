@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://clshqhxc6dbra"]
+
+[ext_resource type="PackedScene" uid="uid://ci7pw0u6whrq" path="res://scenes/units/aztec_girl.tscn" id="1_v1gwx"]
+[ext_resource type="PackedScene" uid="uid://baunj4c63pjio" path="res://scenes/weapon/bow.tscn" id="2_kedd8"]
+
+[node name="AztecGirl" instance=ExtResource("1_v1gwx")]
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+scale = Vector2(2, 2)
+
+[node name="AI" parent="." index="2"]
+zoom = 256.0
+
+[node name="Leopard" parent="." index="3"]
+position = Vector2(0, -11)
+scale = Vector2(1, 1)
+
+[node name="PlayerBow" parent="." index="4" instance=ExtResource("2_kedd8")]
+position = Vector2(11, -4)

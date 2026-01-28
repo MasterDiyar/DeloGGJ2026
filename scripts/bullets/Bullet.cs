@@ -9,10 +9,16 @@ public partial class Bullet : Area2D
     [Export] public float Speed = 0;
     [Export] public float LifeTime = 5;
 
+    public override void _Ready()
+    {
+        BodyEntered += OnHit;
+    }
+
 
     public virtual void OnHit(Node2D hit)
     {
         if (hit is Unit unit) {
+            GD.Print("Hit");
             if (unit.IsInGroup(GetGroups().FirstOrDefault())) return;
             unit.TakeDamage(Damage);
             LifeTime-=3;

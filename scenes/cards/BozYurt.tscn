@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddlix3mt6hd8h"]
+
+[ext_resource type="PackedScene" uid="uid://7pq2cqno2bwj" path="res://scenes/units/playerthings/choose_card.tscn" id="1_5jcgt"]
+[ext_resource type="Texture2D" uid="uid://c5yjqvvsa7wdw" path="res://assets/masks/cumanCursed.png" id="2_jhqvc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_om5m2"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_72u7d"]
+font_size = 14
+font_color = Color(0.62352943, 0, 1, 1)
+
+[node name="ChooseCard" instance=ExtResource("1_5jcgt")]
+
+[node name="Name" parent="VBoxContainer" index="0"]
+text = "Боз курт"
+
+[node name="Texture" parent="VBoxContainer" index="1"]
+texture = ExtResource("2_jhqvc")
+
+[node name="About" parent="VBoxContainer" index="2"]
+text = "Скорость +75 и +3 патрона
+Регенерация +1HP/sek"
+label_settings = SubResource("LabelSettings_om5m2")
+
+[node name="Label" type="Label" parent="VBoxContainer" index="3"]
+layout_mode = 2
+text = "Скорость противников -40 
+но магический урон удвоен"
+label_settings = SubResource("LabelSettings_72u7d")

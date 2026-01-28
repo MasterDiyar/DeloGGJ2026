@@ -1,17 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://5gfvsysk44nv"]
+[gd_scene load_steps=5 format=3 uid="uid://5gfvsysk44nv"]
 
 [ext_resource type="Script" uid="uid://csud3vo3cn364" path="res://scripts/ui/UpgradeDeck.cs" id="1_i5mhe"]
+[ext_resource type="PackedScene" uid="uid://dbam1ot1o6v7j" path="res://scenes/cards/kingCurse.tscn" id="2_y38hj"]
+[ext_resource type="PackedScene" uid="uid://d27j652ffmfdl" path="res://scenes/cards/knightify.tscn" id="3_h0328"]
+[ext_resource type="PackedScene" uid="uid://ddlix3mt6hd8h" path="res://scenes/cards/BozYurt.tscn" id="4_h0328"]
 
-[node name="UpgradeDeck" type="CanvasLayer"]
+[node name="UpgradeDeck" type="CanvasLayer" node_paths=PackedStringArray("Deck")]
 script = ExtResource("1_i5mhe")
+chooseCards = Array[PackedScene]([ExtResource("2_y38hj"), ExtResource("3_h0328"), ExtResource("4_h0328")])
+Deck = NodePath("Control/HBoxContainer")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -200.0
+offset_right = 450.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2

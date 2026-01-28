@@ -11,10 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://d2clrmkhoqul8" path="res://assets/tilemap/water.png" id="7_y3htg"]
 [ext_resource type="Texture2D" uid="uid://bj1bbk1kxft6f" path="res://assets/tilemap/ship.png" id="8_wgdhv"]
 [ext_resource type="PackedScene" uid="uid://cnlnwg0p4td1" path="res://scenes/units/player.tscn" id="9_wgdhv"]
-[ext_resource type="PackedScene" uid="uid://b3270puljcuqi" path="res://scenes/generation/cloud_maker.tscn" id="11_crm4l"]
 [ext_resource type="Texture2D" uid="uid://bx8c2ibk03jvh" path="res://assets/cumans/balbals.png" id="11_nndbb"]
 [ext_resource type="PackedScene" uid="uid://cg2q8d4db6pjh" path="res://scenes/generation/ruins.tscn" id="14_nqadl"]
-[ext_resource type="PackedScene" uid="uid://dvxtj2lb0kfox" path="res://scenes/units/aztec_girl.tscn" id="15_3oe7i"]
+[ext_resource type="PackedScene" uid="uid://clshqhxc6dbra" path="res://scenes/units/aztec_bowgirl.tscn" id="15_3oe7i"]
+[ext_resource type="PackedScene" uid="uid://5nupkni6x7s5" path="res://scenes/generation/white_box.tscn" id="15_us58t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nndbb"]
 radius = 15.033297
@@ -191,7 +191,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 52, 80)
 
 [node name="Sprite2D9" type="Sprite2D" parent="planter"]
-position = Vector2(1045, 548)
+position = Vector2(1488.8182, 588.4546)
 scale = Vector2(2.765625, 2.765625)
 texture = ExtResource("7_3bs6p")
 offset = Vector2(0, -32)
@@ -254,7 +254,7 @@ position = Vector2(682, 536)
 shape = SubResource("CircleShape2D_nndbb")
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="planter/StaticBody2D"]
-position = Vector2(1048, 543)
+position = Vector2(1499.0181, 579.55066)
 shape = SubResource("CircleShape2D_nndbb")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="planter/StaticBody2D"]
@@ -304,18 +304,17 @@ texture = ExtResource("11_nndbb")
 [node name="Player" parent="." instance=ExtResource("9_wgdhv")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(39, 34)
-
-[node name="CloudMaker" parent="." instance=ExtResource("11_crm4l")]
-modulate = Color(0.29586652, 0.2958665, 0.2958665, 0.37254903)
-top_level = true
-position = Vector2(1102, 80)
-scale = Vector2(3.0416665, 2.4999998)
-texturesCount = Vector2i(2, 2)
-Speed = 20.0
+texture_filter = 0
+position = Vector2(1067, 341)
 
 [node name="Ruins" parent="." instance=ExtResource("14_nqadl")]
 position = Vector2(740, 261)
 
 [node name="AztecGirl" parent="." instance=ExtResource("15_3oe7i")]
-position = Vector2(782.3696, 1076.9126)
+position = Vector2(787.2173, 1081.5087)
+
+[node name="WhiteBox" parent="." instance=ExtResource("15_us58t")]
+visible = false
+z_index = 512
+texture_filter = 3
+scale = Vector2(2.2597656, 1.2939453)

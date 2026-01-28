@@ -26,5 +26,5 @@ label_settings = SubResource("LabelSettings_srhqg")
 [node name="RedText" type="Label" parent="VBoxContainer" index="3"]
 layout_mode = 2
 text = "Дальнобойные противники
-стреляют с удвоением"
+стреляют с доп. патроном"
 label_settings = SubResource("LabelSettings_gwhhj")

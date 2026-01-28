@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://5nupkni6x7s5"]
+
+[ext_resource type="Shader" uid="uid://wgr8tp6sl4j2" path="res://scenes/generation/bult.gdshader" id="1_1obj1"]
+[ext_resource type="Texture2D" uid="uid://b0vgg30gtlhd5" path="res://assets/cumans/whiteBox.png" id="1_xa7t7"]
+[ext_resource type="Script" uid="uid://du5lm26wcjkj" path="res://scripts/generate/CloudController.cs" id="3_3mfx5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_p5mpl"]
+noise_type = 3
+frequency = 0.004
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_63x0g"]
+width = 1000
+height = 1000
+noise = SubResource("FastNoiseLite_p5mpl")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3mfx5"]
+shader = ExtResource("1_1obj1")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_63x0g")
+shader_parameter/speed = 0.001
+shader_parameter/zoom_speed = 0.001
+
+[node name="WhiteBox" type="Sprite2D"]
+material = SubResource("ShaderMaterial_3mfx5")
+texture = ExtResource("1_xa7t7")
+centered = false
+script = ExtResource("3_3mfx5")

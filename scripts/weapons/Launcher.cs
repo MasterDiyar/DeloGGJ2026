@@ -14,6 +14,7 @@ public partial class Launcher : Node2D
     [Export] protected bool perLaunch = false,
                             isCentered = false;
     [Export]protected float betweenAngle = 0;
+    [Export] protected float Offset = 0;
 
     private FirstMap map;
     public override void _Ready()
@@ -44,7 +45,7 @@ public partial class Launcher : Node2D
     {
         var bullet = bulletScene.Instantiate<Bullet>();
         bullet.Rotation = angle;
-        bullet.Position = GetGlobalPosition();
+        bullet.Position = GetGlobalPosition() + Vector2.FromAngle(angle) * Offset;
         bullet.Damage += damage * myWeapon.multiplier;
         bullet.AddToGroup(GetParent().GetParent().GetGroups().FirstOrDefault());
         map.AddChild(bullet);

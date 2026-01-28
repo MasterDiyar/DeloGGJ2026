@@ -28,23 +28,21 @@ public partial class Ai : Node2D
         if ( !Attacking)
             unit.MoveAndSlide();
         else
-        {
             foreach (var w in weapons)
-            {
                 w.Attack(vector);
-            }
-        }
     }
 
     void Move(float delta)
     {
+        if (!IsInstanceValid(Player)) { QueueFree();
+            return; }
         Vector2 direction = (Player.GlobalPosition - unit.GlobalPosition).Normalized();
     
         vector = direction.Angle();
-        unit.Velocity = unit.UnitSpeed * Vector2.FromAngle(vector);
+        unit.Velocity = unit.CurrentSpeed * Vector2.FromAngle(vector);
         
         Attacking = unit.Position.DistanceSquaredTo(Player.Position) <= zoom * zoom;
 
-        unit.Velocity = !Attacking ? direction * unit.UnitSpeed : Vector2.Zero;
+        unit.Velocity = !Attacking ? direction * unit.CurrentSpeed : Vector2.Zero;
     }
 }

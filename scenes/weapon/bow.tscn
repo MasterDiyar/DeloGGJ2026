@@ -67,3 +67,7 @@ libraries = {
 [node name="Line2D" type="Line2D" parent="Bow" index="1"]
 points = PackedVector2Array(14, -15, 4.5915833, -5.2671585, -6.2311764, 5.9288006, -15, 15)
 width = 1.0
+
+[node name="launcher" parent="." index="2"]
+betweenAngle = 0.2
+Offset = 1.0

@@ -1,54 +1,102 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using ggJAM228.scripts.resourceDir;
 
 public partial class Unit : CharacterBody2D
 {
-	[Export] public float
-		UnitSpeed = 100f,
-		MaxHp = 100f,
-		Damage = 10f,
-		MagicAmplifier = 1f,
-		MeleeAmplifier = 1f,
-		RangedAmplifier = 1f,
-		Defence = 100f,
-		XpOnDrop = 1f,
-		Regeneration = 0;
+	[ExportGroup("Base Stats")]
+	[Export] public float BaseSpeed = 100f, BaseMaxHp = 100f, BaseDamage = 10f, 
+		BaseXpOnDrop = 1f, BaseRegeneration = 0f, BaseDefence = 100f;
+	
+	public UpgradeResource modifiers = new()
+	{
+		AddMeleeAmplifier = 1,
+		AddMagicAmplifier = 1,
+		AddRangedAmplifier = 1,
+	};
+	
+	public float Hp, Armor, CurrentMaxHp, CurrentDamage, CurrentSpeed, CurrentXpOnDrop, CurrentRegeneration, CurrentMaxArmor;
+	
+	private bool _isMovingUp = false;
+	private List<Sprite2D> _masks = [];
 
-	public float Hp;
+	public Action UpdateWeapons;
+
+
+	public override void _Ready()
+	{
+		if (!IsInGroup("player"))
+			AddResource(((FirstMap)GetTree().GetFirstNodeInGroup("map")).mobAmplifier);
+		foreach (var nid in GetChildren())
+			if (nid.IsInGroup("mask") && nid is Sprite2D sprite)
+				_masks.Add(sprite);
+		
+		UpdateFinalStats();
+		Hp = CurrentMaxHp;
+		Armor = CurrentMaxArmor;
+	}
 
 	public void TakeDamage(float damage)
 	{
-		if (Defence > 0)
-			Defence -= damage;
+		if (Armor > 0)
+			Armor -= damage;
 		else
 			Hp -= damage;
 		if (Hp <= 0)
 			DeferredDeath();
 	}
+	
+	public void UpdateFinalStats()
+	{
+		CurrentMaxHp = BaseMaxHp + modifiers.AddMaxHp;
+		CurrentDamage = BaseDamage + modifiers.AddDamage;
+		CurrentSpeed = BaseSpeed + modifiers.AddSpeed;
+		CurrentXpOnDrop = BaseXpOnDrop + modifiers.AddXP;
+		CurrentRegeneration = BaseRegeneration + modifiers.AddRegeneration;
+        
+		Scale = Vector2.One * (1.0f + modifiers.AddScale);
+        
+		if (Hp > CurrentMaxHp) Hp = CurrentMaxHp;
+		if (Armor > CurrentMaxArmor) Armor = CurrentMaxArmor;
+		
+		UpdateWeapons?.Invoke();
+	}
+	
+	public void AddResource(UpgradeResource resource)
+	{
+		modifiers.Concat(resource); 
+		UpdateFinalStats();      
+		foreach (var nid in GetChildren())
+			if (nid.IsInGroup("mask") && nid is Sprite2D sprite)
+				_masks.Add(sprite);
+	}
 
 	public override void _Process(double delta)
 	{
-		Hp +=(Hp < MaxHp) ? (float)delta * Regeneration : 0;
+		HandleZIndex();
+		if (Hp < CurrentMaxHp)
+			Hp += (float)delta * CurrentRegeneration;
+	}
+
+	private void HandleZIndex()
+	{
+		if (Velocity.Y == 0) return;
+		bool movingUp = Velocity.Y < 0;
+        
+		if (movingUp != _isMovingUp) {
+			_isMovingUp = movingUp;
+			int newZ = _isMovingUp ? -1 : 0;
+            
+			foreach (var mask in _masks)
+				mask.ZIndex = newZ;
+		}
 	}
 
 	public virtual void DeferredDeath()
 	{
 		var map = GetTree().GetFirstNodeInGroup("map") as FirstMap;
-		map.XP += XpOnDrop;
+		map.XP += CurrentXpOnDrop;
 		CallDeferred("queue_free");
-	}
-
-	public void AddResource(UpgradeResource resource)
-	{
-		UnitSpeed += resource.AddSpeed;
-		MaxHp += resource.AddMaxHp;
-		Damage += resource.AddDamage;
-		Defence += resource.AddSpeed;
-		MagicAmplifier += resource.AddMagicAmplifier;
-		MeleeAmplifier += resource.AddMeleeAmplifier;
-		RangedAmplifier += resource.AddRangedAmplifier;
-		Regeneration += resource.AddRegeneration;
-		Scale += Vector2.One * resource.AddScale;
 	}
 }

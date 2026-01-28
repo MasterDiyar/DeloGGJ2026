@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnlnwg0p4td1"]
+[gd_scene load_steps=9 format=3 uid="uid://cnlnwg0p4td1"]
 
 [ext_resource type="PackedScene" uid="uid://cfgy6wgynlgvu" path="res://scenes/prefab/unit.tscn" id="1_pkbir"]
 [ext_resource type="PackedScene" uid="uid://bqwmk1b7e3ej" path="res://scenes/units/playerthings/move_node.tscn" id="2_esfxm"]
 [ext_resource type="PackedScene" uid="uid://cxf88n8ssikpj" path="res://scenes/units/playerthings/playerAnim.tscn" id="3_15tbu"]
 [ext_resource type="PackedScene" uid="uid://baunj4c63pjio" path="res://scenes/weapon/bow.tscn" id="4_55td2"]
 [ext_resource type="Script" uid="uid://b8wrxue32e0o5" path="res://scripts/units/player/ItemUse.cs" id="5_rwmet"]
+[ext_resource type="Texture2D" uid="uid://ci5qps55n8ye2" path="res://assets/masks/cumanMask.png" id="6_xovxq"]
+[ext_resource type="PackedScene" uid="uid://5gfvsysk44nv" path="res://scenes/units/playerthings/upgrade_deck.tscn" id="7_174p4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_esfxm"]
 
@@ -14,7 +16,7 @@
 shape = SubResource("CapsuleShape2D_esfxm")
 
 [node name="Camera2D" type="Camera2D" parent="." index="1"]
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 process_callback = 0
 limit_left = 0
 limit_top = 0
@@ -26,9 +28,18 @@ sprite = NodePath("../AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" parent="." index="3" instance=ExtResource("3_15tbu")]
 position = Vector2(0, -11)
+animation = &"idle"
 
 [node name="Weapon" parent="." index="4" instance=ExtResource("4_55td2")]
 
 [node name="ItemHandle" type="Node2D" parent="." index="5" node_paths=PackedStringArray("myUnit")]
 script = ExtResource("5_rwmet")
 myUnit = NodePath("..")
+
+[node name="CumanMask" type="Sprite2D" parent="." index="6" groups=["mask"]]
+position = Vector2(0, 1)
+texture = ExtResource("6_xovxq")
+offset = Vector2(-1, -32)
+
+[node name="UpgradeDeck" parent="." index="7" instance=ExtResource("7_174p4")]
+layer = 3

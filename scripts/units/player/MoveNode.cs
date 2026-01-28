@@ -32,9 +32,21 @@ public partial class MoveNode : Node2D
 				unit.Rotation = 0;
 				break;
 		}
-		sprite.Animation = (vec != Vector2.Zero) ? "walk" : "idle";
+		if (vec == Vector2.Zero)
+			sprite.Animation =  "idle";
+		else
+		{
+			if (vec.Y >= 0)
+				sprite.Animation = "walk";
+			else
+			{
+				unit.Skew *= -1;
+				unit.Rotation *= -1;
+				sprite.Animation = "back";
+			}
+		}
 		
-		unit.Velocity = vec * unit.UnitSpeed;
+		unit.Velocity = vec * unit.CurrentSpeed;
 		unit.MoveAndSlide();
 	}
 }

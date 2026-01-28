@@ -1,24 +1,51 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvxtj2lb0kfox"]
+[gd_scene load_steps=10 format=3 uid="uid://ci7pw0u6whrq"]
 
 [ext_resource type="PackedScene" uid="uid://cfgy6wgynlgvu" path="res://scenes/prefab/unit.tscn" id="1_7k3y4"]
-[ext_resource type="Texture2D" uid="uid://bsl4s6uf13llf" path="res://assets/other/aztec.png" id="2_wqukp"]
-[ext_resource type="PackedScene" uid="uid://c276a8lydcv5x" path="res://scenes/weapon/entity_bow.tscn" id="3_wqukp"]
+[ext_resource type="Texture2D" uid="uid://cmsmts7kbvgca" path="res://assets/other/aztec1.png" id="2_0se6p"]
+[ext_resource type="Texture2D" uid="uid://d3u5l38wjr3ro" path="res://assets/other/aztec2.png" id="3_868e4"]
 [ext_resource type="PackedScene" uid="uid://d2ru05glewvcy" path="res://scenes/units/ai.tscn" id="4_76gww"]
+[ext_resource type="Texture2D" uid="uid://xgr3exalkvg1" path="res://assets/other/aztec3.png" id="4_i12dn"]
+[ext_resource type="Texture2D" uid="uid://6vwtknqavwrr" path="res://assets/other/aztec4.png" id="5_slt8f"]
+[ext_resource type="Texture2D" uid="uid://dongy0fhw2gpv" path="res://assets/masks/leopard.png" id="7_jpypd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_76gww"]
 
-[node name="AztecGirl" instance=ExtResource("1_7k3y4")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nu745"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0se6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_868e4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i12dn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_slt8f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="AztecGirl" groups=["enemy"] instance=ExtResource("1_7k3y4")]
+texture_filter = 3
 UnitSpeed = 80.0
 Damage = 2.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_76gww")
 
-[node name="Aztec" type="Sprite2D" parent="." index="1"]
-texture_filter = 3
-position = Vector2(0, -5)
-texture = ExtResource("2_wqukp")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(0.5, -2)
+sprite_frames = SubResource("SpriteFrames_nu745")
+frame_progress = 0.089344606
 
-[node name="EntityBow" parent="." index="2" instance=ExtResource("3_wqukp")]
+[node name="AI" parent="." index="2" instance=ExtResource("4_76gww")]
 
-[node name="AI" parent="." index="3" instance=ExtResource("4_76gww")]
+[node name="Leopard" type="Sprite2D" parent="." index="3" groups=["mask"]]
+position = Vector2(0.5, -9)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_jpypd")
