@@ -5,13 +5,13 @@ using System.Linq;
 
 public partial class Ai : Node2D
 {
-    private Unit unit;
-    private List<Weapon> weapons;
-    private Node2D BalBal, Player;
+    protected Unit unit;
+    protected List<Weapon> weapons;
+    protected Node2D BalBal, Player;
 
-    private float vector;
+    protected float vector;
     [Export] private float zoom = 128;
-    bool Attacking = false;
+    protected bool Attacking = false;
     public override void _Ready()
     {
         unit = GetParent<Unit>();
@@ -32,7 +32,7 @@ public partial class Ai : Node2D
                 w.Attack(vector);
     }
 
-    void Move(float delta)
+    protected virtual void Move(float delta)
     {
         if (!IsInstanceValid(Player)) { QueueFree();
             return; }

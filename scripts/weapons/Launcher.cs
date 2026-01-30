@@ -30,13 +30,15 @@ public partial class Launcher : Node2D
         for (int i = 0; i < launchCount; i++)
         {
             if (perLaunch) for (int j = 0; j < myWeapon.bulletScene.Length; j++)
+                for (var k = 0; k < myWeapon.bulletScene[j].LaunchCount; k++)
                     CreateBullet(myWeapon.bulletScene[j].bullet_scene,
-                        starter + i * betweenAngle + j * betweenAngle / 2,
+                        starter + i * betweenAngle + k * betweenAngle + j * betweenAngle / 2,
                         myWeapon.baseDamage + myWeapon.bulletScene[j].BaseDamage);
             else foreach (var t in myWeapon.bulletScene)
+                for (var k = 0; k < t.LaunchCount; k++)
                     CreateBullet(t.bullet_scene,
                         myWeapon.baseDamage + t.BaseDamage,
-                        starter + i * betweenAngle);
+                        starter + i * betweenAngle + k * betweenAngle);
             
         }
     }

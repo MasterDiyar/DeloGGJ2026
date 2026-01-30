@@ -1,7 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbam1ot1o6v7j"]
+[gd_scene load_steps=8 format=3 uid="uid://dbam1ot1o6v7j"]
 
 [ext_resource type="PackedScene" uid="uid://7pq2cqno2bwj" path="res://scenes/units/playerthings/choose_card.tscn" id="1_51pgm"]
 [ext_resource type="Texture2D" uid="uid://cei7qoea2r57y" path="res://assets/masks/cursedzabralo.png" id="2_mie18"]
+[ext_resource type="Script" uid="uid://bi78lxympvcrh" path="res://scripts/resourceDir/UpgradeResource.cs" id="2_srhqg"]
+
+[sub_resource type="Resource" id="Resource_gwhhj"]
+script = ExtResource("2_srhqg")
+AddDamage = 2.0
+AddMagicAmplifier = 1.0
+AddMeleeAmplifier = 1.0
+AddRangedAmplifier = 1.0
+AddShield = 15.0
+metadata/_custom_type_script = "uid://bi78lxympvcrh"
+
+[sub_resource type="Resource" id="Resource_nfnw8"]
+script = ExtResource("2_srhqg")
+AddProjectile = 1
+metadata/_custom_type_script = "uid://bi78lxympvcrh"
 
 [sub_resource type="LabelSettings" id="LabelSettings_srhqg"]
 font_size = 12
@@ -11,6 +26,8 @@ font_size = 13
 font_color = Color(0.5019608, 0, 1, 1)
 
 [node name="ChooseCard" instance=ExtResource("1_51pgm")]
+upgradeResource = SubResource("Resource_gwhhj")
+downgradeResource = SubResource("Resource_nfnw8")
 
 [node name="Name" parent="VBoxContainer" index="0"]
 text = "Проклятие короля"
@@ -28,3 +45,4 @@ layout_mode = 2
 text = "Дальнобойные противники
 стреляют с доп. патроном"
 label_settings = SubResource("LabelSettings_gwhhj")
+horizontal_alignment = 1

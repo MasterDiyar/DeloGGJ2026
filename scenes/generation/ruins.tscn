@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cg2q8d4db6pjh"]
+[gd_scene load_steps=8 format=3 uid="uid://cg2q8d4db6pjh"]
 
 [ext_resource type="Texture2D" uid="uid://5de4ecwq2387" path="res://assets/tilemap/ruins.png" id="1_xwj2f"]
 [ext_resource type="Script" uid="uid://bm17lrabmf1a6" path="res://scripts/generate/Ruins.cs" id="2_lxwqs"]
 [ext_resource type="PackedScene" uid="uid://baunj4c63pjio" path="res://scenes/weapon/bow.tscn" id="3_3fiff"]
+[ext_resource type="Texture2D" uid="uid://bcqo2t3uy6gxa" path="res://assets/tilemap/builded.png" id="3_lg2cg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lxwqs"]
 font_size = 48
@@ -18,6 +19,7 @@ texture_filter = 3
 scale = Vector2(2, 2)
 texture = ExtResource("1_xwj2f")
 script = ExtResource("2_lxwqs")
+aftergrade = ExtResource("3_lg2cg")
 gradeLabel = NodePath("Label")
 area = NodePath("Area2D")
 shootArea = NodePath("ShootArea")

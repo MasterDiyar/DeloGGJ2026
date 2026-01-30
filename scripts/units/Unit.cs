@@ -43,6 +43,7 @@ public partial class Unit : CharacterBody2D
 			Armor -= damage;
 		else
 			Hp -= damage;
+		GD.Print(Armor, " <-armor, hp-> " ,Hp);
 		if (Hp <= 0)
 			DeferredDeath();
 	}
@@ -54,6 +55,7 @@ public partial class Unit : CharacterBody2D
 		CurrentSpeed = BaseSpeed + modifiers.AddSpeed;
 		CurrentXpOnDrop = BaseXpOnDrop + modifiers.AddXP;
 		CurrentRegeneration = BaseRegeneration + modifiers.AddRegeneration;
+		CurrentMaxArmor = BaseDefence + modifiers.AddShield;
         
 		Scale = Vector2.One * (1.0f + modifiers.AddScale);
         

@@ -2,6 +2,7 @@ using Godot;
 
 namespace ggJAM228.scripts.resourceDir;
 
+[GlobalClass]
 public partial class BulletResource : Resource
 {
     [Export] public float BaseDamage = 1;

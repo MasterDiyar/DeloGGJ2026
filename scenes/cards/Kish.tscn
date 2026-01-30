@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://u6o5tv74xi0e"]
+
+[ext_resource type="PackedScene" uid="uid://7pq2cqno2bwj" path="res://scenes/units/playerthings/choose_card.tscn" id="1_o3ne0"]
+[ext_resource type="Texture2D" uid="uid://07tsm3vdi1ue" path="res://assets/masks/clown.png" id="2_0cocy"]
+[ext_resource type="Script" uid="uid://bi78lxympvcrh" path="res://scripts/resourceDir/UpgradeResource.cs" id="2_45ycd"]
+
+[sub_resource type="Resource" id="Resource_rqdth"]
+script = ExtResource("2_45ycd")
+metadata/_custom_type_script = "uid://bi78lxympvcrh"
+
+[sub_resource type="Resource" id="Resource_fm5ey"]
+script = ExtResource("2_45ycd")
+AddDamage = -2.0
+AddXP = 4.0
+metadata/_custom_type_script = "uid://bi78lxympvcrh"
+
+[sub_resource type="LabelSettings" id="LabelSettings_45ycd"]
+font_size = 14
+
+[node name="Chester" instance=ExtResource("1_o3ne0")]
+upgradeResource = SubResource("Resource_rqdth")
+downgradeResource = SubResource("Resource_fm5ey")
+
+[node name="Name" parent="VBoxContainer" index="0"]
+text = "Королевская шутка"
+
+[node name="Texture" parent="VBoxContainer" index="1"]
+texture = ExtResource("2_0cocy")
+
+[node name="About" parent="VBoxContainer" index="2"]
+text = "Урон противников -2
+Опыт +4
+
+"
+label_settings = SubResource("LabelSettings_45ycd")

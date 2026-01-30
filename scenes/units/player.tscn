@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnlnwg0p4td1"]
+[gd_scene load_steps=18 format=3 uid="uid://cnlnwg0p4td1"]
 
 [ext_resource type="PackedScene" uid="uid://cfgy6wgynlgvu" path="res://scenes/prefab/unit.tscn" id="1_pkbir"]
 [ext_resource type="PackedScene" uid="uid://bqwmk1b7e3ej" path="res://scenes/units/playerthings/move_node.tscn" id="2_esfxm"]
@@ -7,6 +7,15 @@
 [ext_resource type="Script" uid="uid://b8wrxue32e0o5" path="res://scripts/units/player/ItemUse.cs" id="5_rwmet"]
 [ext_resource type="Texture2D" uid="uid://ci5qps55n8ye2" path="res://assets/masks/cumanMask.png" id="6_xovxq"]
 [ext_resource type="PackedScene" uid="uid://5gfvsysk44nv" path="res://scenes/units/playerthings/upgrade_deck.tscn" id="7_174p4"]
+[ext_resource type="Script" uid="uid://sv750kkcvlvx" path="res://scripts/units/player/Hands.cs" id="8_olx12"]
+[ext_resource type="Texture2D" uid="uid://bsnirgr8rumsc" path="res://assets/cumans/bow.png" id="9_gxusr"]
+[ext_resource type="PackedScene" uid="uid://qegl4wsf2dta" path="res://scenes/weapon/basicSword.tscn" id="9_w077h"]
+[ext_resource type="PackedScene" uid="uid://b783basw3isaa" path="res://scenes/weapon/handgun.tscn" id="10_e6v0h"]
+[ext_resource type="PackedScene" uid="uid://qfx30d7okxv0" path="res://scenes/weapon/leopardo.tscn" id="11_ebtjg"]
+[ext_resource type="PackedScene" uid="uid://b0a883mdusyfs" path="res://scenes/weapon/Macuahuitl.tscn" id="12_phdkp"]
+[ext_resource type="Texture2D" uid="uid://dqdmo0g1qikgt" path="res://assets/cumans/bottomHeart.png" id="14_r8cln"]
+[ext_resource type="Texture2D" uid="uid://bmbsliqiiu2gk" path="res://assets/cumans/evenupperHeart.png" id="15_trcvq"]
+[ext_resource type="Texture2D" uid="uid://d0h5wsur64yhx" path="res://assets/cumans/upperHeart.png" id="16_f4qqk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_esfxm"]
 
@@ -43,3 +52,107 @@ offset = Vector2(-1, -32)
 
 [node name="UpgradeDeck" parent="." index="7" instance=ExtResource("7_174p4")]
 layer = 3
+
+[node name="hands" type="CanvasLayer" parent="." index="8" node_paths=PackedStringArray("BowPanel", "SwordPanel", "GunPanel", "HpBar", "XpLine") groups=["hands"]]
+script = ExtResource("8_olx12")
+BowPanel = NodePath("HBoxContainer/Bow")
+SwordPanel = NodePath("HBoxContainer/Sword")
+GunPanel = NodePath("HBoxContainer/HandGun")
+weapons = [ExtResource("4_55td2"), ExtResource("9_w077h"), ExtResource("10_e6v0h"), ExtResource("11_ebtjg"), ExtResource("12_phdkp")]
+HpBar = NodePath("Control/TextureProgressBar")
+XpLine = NodePath("Control/XpLine")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hands" index="0"]
+texture_filter = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -40.0
+offset_right = 46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 6
+
+[node name="Bow" type="Panel" parent="hands/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="hands/HBoxContainer/Bow" index="0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_gxusr")
+
+[node name="Sword" type="Panel" parent="hands/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect2" type="TextureRect" parent="hands/HBoxContainer/Sword" index="0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HandGun" type="Panel" parent="hands/HBoxContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect3" type="TextureRect" parent="hands/HBoxContainer/HandGun" index="0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -20.0
+offset_right = 16.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="hands" index="1"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 47.0
+grow_horizontal = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="hands/Control" index="0"]
+layout_mode = 0
+offset_right = 137.0
+offset_bottom = 40.0
+value = 100.0
+fill_mode = 5
+texture_under = ExtResource("14_r8cln")
+texture_over = ExtResource("15_trcvq")
+texture_progress = ExtResource("16_f4qqk")
+
+[node name="BackLine" type="Line2D" parent="hands/Control" index="1"]
+points = PackedVector2Array(99, 15, 501, 15)
+default_color = Color(0.015686275, 0, 0.22745098, 1)
+
+[node name="XpLine" type="Line2D" parent="hands/Control" index="2"]
+points = PackedVector2Array(100, 15, 500, 15)
+width = 8.0
+default_color = Color(0.7137255, 1, 1, 1)

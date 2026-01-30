@@ -18,7 +18,6 @@ public partial class Bullet : Area2D
     public virtual void OnHit(Node2D hit)
     {
         if (hit is Unit unit) {
-            GD.Print("Hit");
             if (unit.IsInGroup(GetGroups().FirstOrDefault())) return;
             unit.TakeDamage(Damage);
             LifeTime-=3;

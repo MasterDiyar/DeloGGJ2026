@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://qfx30d7okxv0"]
+
+[ext_resource type="PackedScene" uid="uid://cl7hdiq0ouaxj" path="res://scenes/prefab/weapon.tscn" id="1_y55sw"]
+[ext_resource type="PackedScene" uid="uid://bof2smfwleyqk" path="res://scenes/weapon/bullets/paws.tscn" id="2_abyqn"]
+[ext_resource type="Script" uid="uid://choqx1p57hu50" path="res://scripts/resourceDir/BulletResource.cs" id="3_h4de1"]
+
+[sub_resource type="Resource" id="Resource_0qi2t"]
+script = ExtResource("3_h4de1")
+bullet_scene = ExtResource("2_abyqn")
+metadata/_custom_type_script = "uid://choqx1p57hu50"
+
+[node name="Weapon" instance=ExtResource("1_y55sw")]
+weaponType = 1
+bulletScene = [SubResource("Resource_0qi2t")]
+
+[node name="Timer" parent="." index="0"]
+wait_time = 1.0
+
+[node name="launcher" parent="." index="1"]
+Offset = 40.0

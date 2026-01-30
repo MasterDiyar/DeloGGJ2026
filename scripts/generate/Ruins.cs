@@ -6,6 +6,7 @@ using ggJAM228.scripts.resourceDir;
 
 public partial class Ruins : Sprite2D
 {
+	[Export] private Texture2D aftergrade;
 	[Export] private Label gradeLabel;
 	[Export] private int cost = 15;
 	[Export] private Area2D area, shootArea;
@@ -81,6 +82,7 @@ public partial class Ruins : Sprite2D
 			case 2:
 				wep = weaponScene.Instantiate<Weapon>();
 				AddChild(wep);
+				Texture = aftergrade;
 				gradeLabel.Text = "Теперь нужно 100xp";
 				cost = 100;
 				shootArea.Monitorable = true;

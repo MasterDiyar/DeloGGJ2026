@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://ua5m63r1def2"]
+
+[ext_resource type="PackedScene" uid="uid://cfgy6wgynlgvu" path="res://scenes/prefab/unit.tscn" id="1_upm15"]
+[ext_resource type="Texture2D" uid="uid://bn65mou04omth" path="res://assets/other/leopard1.png" id="2_gfsqj"]
+[ext_resource type="Texture2D" uid="uid://cq7d0cfyixr8c" path="res://assets/other/leopard2.png" id="3_hfla1"]
+[ext_resource type="Texture2D" uid="uid://1cferlfsqsqo" path="res://assets/other/leopard3.png" id="4_8cyfs"]
+[ext_resource type="Texture2D" uid="uid://pxqdouq3jfkp" path="res://assets/other/leopard4.png" id="5_uih42"]
+[ext_resource type="Script" uid="uid://mmy5o6gkthb7" path="res://scripts/units/LeopardAi.cs" id="6_vfeqv"]
+[ext_resource type="PackedScene" uid="uid://qfx30d7okxv0" path="res://scenes/weapon/leopardo.tscn" id="7_gfsqj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rtpdv"]
+height = 50.69
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_koimy"]
+animations = [{
+"frames": [{
+"duration": 0.91,
+"texture": ExtResource("2_gfsqj")
+}, {
+"duration": 0.91,
+"texture": ExtResource("3_hfla1")
+}, {
+"duration": 0.91,
+"texture": ExtResource("4_8cyfs")
+}, {
+"duration": 1.31,
+"texture": ExtResource("5_uih42")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Leopard" groups=["enemy"] instance=ExtResource("1_upm15")]
+BaseSpeed = 120.0
+BaseMaxHp = 180.0
+BaseDamage = 5.0
+BaseXpOnDrop = 40.0
+BaseRegeneration = 20.0
+BaseDefence = 10.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_rtpdv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_koimy")
+frame_progress = 0.016253084
+
+[node name="LeopardAI" type="Node2D" parent="." index="2"]
+script = ExtResource("6_vfeqv")
+zoom = 56.0
+
+[node name="Weapon" parent="." index="3" instance=ExtResource("7_gfsqj")]

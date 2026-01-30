@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://5gfvsysk44nv"]
+[gd_scene load_steps=8 format=3 uid="uid://5gfvsysk44nv"]
 
 [ext_resource type="Script" uid="uid://csud3vo3cn364" path="res://scripts/ui/UpgradeDeck.cs" id="1_i5mhe"]
 [ext_resource type="PackedScene" uid="uid://dbam1ot1o6v7j" path="res://scenes/cards/kingCurse.tscn" id="2_y38hj"]
 [ext_resource type="PackedScene" uid="uid://d27j652ffmfdl" path="res://scenes/cards/knightify.tscn" id="3_h0328"]
 [ext_resource type="PackedScene" uid="uid://ddlix3mt6hd8h" path="res://scenes/cards/BozYurt.tscn" id="4_h0328"]
+[ext_resource type="PackedScene" uid="uid://u6o5tv74xi0e" path="res://scenes/cards/Kish.tscn" id="5_cfrdm"]
+[ext_resource type="PackedScene" uid="uid://dm8jiq473qddb" path="res://scenes/cards/kipchak.tscn" id="6_qccii"]
+[ext_resource type="PackedScene" uid="uid://c5pvrx4jslpvs" path="res://scenes/cards/wolfenstein.tscn" id="7_aouya"]
 
 [node name="UpgradeDeck" type="CanvasLayer" node_paths=PackedStringArray("Deck")]
 script = ExtResource("1_i5mhe")
-chooseCards = Array[PackedScene]([ExtResource("2_y38hj"), ExtResource("3_h0328"), ExtResource("4_h0328")])
+chooseCards = Array[PackedScene]([ExtResource("2_y38hj"), ExtResource("3_h0328"), ExtResource("4_h0328"), ExtResource("5_cfrdm"), ExtResource("6_qccii"), ExtResource("7_aouya")])
 Deck = NodePath("Control/HBoxContainer")
 
 [node name="Control" type="Control" parent="."]

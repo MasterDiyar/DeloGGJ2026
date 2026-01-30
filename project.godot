@@ -14,6 +14,10 @@ config/name="ggJAM228"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/mode=3
+
 [dotnet]
 
 project/assembly_name="ggJAM228"
@@ -21,6 +25,7 @@ project/assembly_name="ggJAM228"
 [file_customization]
 
 folder_colors={
+"res://scenes/prefab/": "green",
 "res://scripts/masks/": "gray",
 "res://scripts/units/": "blue"
 }
@@ -31,6 +36,7 @@ player=""
 map=""
 enemy=""
 mask=""
+hands=""
 
 [input]
 

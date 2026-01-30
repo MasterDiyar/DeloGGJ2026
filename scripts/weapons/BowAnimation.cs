@@ -8,7 +8,10 @@ public partial class BowAnimation : Sprite2D
 
     public override void _Ready()
     {
-        _timer.Timeout += () => animationPlayer.Play("natyazhenie");
-        GetParent<Weapon>().Fire += (a) => animationPlayer.Play("RESET");
+        GetParent<Weapon>().Fire += (a) =>
+        {
+            animationPlayer.Play("RESET");
+            animationPlayer.Play("natyazhenie");
+        };
     }
 }

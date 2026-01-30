@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://ck6a4imcp8jqo" path="res://scripts/weapons/Launcher.cs" id="2_btk8i"]
 
 [node name="Weapon" type="Node2D"]
-modulate = Color(1, 1, 1, 0.30588236)
 script = ExtResource("1_d7anw")
 
 [node name="Timer" type="Timer" parent="."]

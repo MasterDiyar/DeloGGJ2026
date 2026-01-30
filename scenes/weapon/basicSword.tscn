@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://qegl4wsf2dta"]
+
+[ext_resource type="PackedScene" uid="uid://cl7hdiq0ouaxj" path="res://scenes/prefab/weapon.tscn" id="1_oenj1"]
+[ext_resource type="PackedScene" uid="uid://cpgtyssnpsyx3" path="res://scenes/weapon/bullets/swing.tscn" id="2_3qcpk"]
+[ext_resource type="Texture2D" uid="uid://d23wvc654thsr" path="res://assets/cumans/sword.png" id="2_7mqri"]
+[ext_resource type="Script" uid="uid://dywhnsfqojub0" path="res://scripts/weapons/SwordAnim.cs" id="3_3qcpk"]
+[ext_resource type="Script" uid="uid://choqx1p57hu50" path="res://scripts/resourceDir/BulletResource.cs" id="3_5p53d"]
+
+[sub_resource type="Resource" id="Resource_quxqt"]
+script = ExtResource("3_5p53d")
+BaseDamage = 7.0
+bullet_scene = ExtResource("2_3qcpk")
+metadata/_custom_type_script = "uid://choqx1p57hu50"
+
+[sub_resource type="Animation" id="Animation_5p53d"]
+resource_name = "swing"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16, 0.5, 0.6666667, 0.87, 1.0333334, 1.3333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -1), Vector2(0, -10), Vector2(3, -1), Vector2(3, -1), Vector2(-4, 0), Vector2(-4, 2), Vector2(20, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16, 0.46666664, 0.6666667, 0.87, 1.0333334, 1.3433334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.3089969, 1.4573499, 1.4573499, 0.3490658503988659, 0.7853982, 0.7853982]
+}
+
+[sub_resource type="Animation" id="Animation_quxqt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bop6l"]
+_data = {
+&"RESET": SubResource("Animation_quxqt"),
+&"swing": SubResource("Animation_5p53d")
+}
+
+[node name="Sword" instance=ExtResource("1_oenj1")]
+weaponType = 1
+bulletScene = [SubResource("Resource_quxqt")]
+baseDamage = 25.0
+
+[node name="Timer" parent="." index="0"]
+wait_time = 1.0
+
+[node name="Sword" type="Sprite2D" parent="." index="2" node_paths=PackedStringArray("animationPlayer", "_timer")]
+texture_filter = 3
+position = Vector2(0, -1)
+texture = ExtResource("2_7mqri")
+offset = Vector2(6, -10)
+script = ExtResource("3_3qcpk")
+animationPlayer = NodePath("AnimationPlayer")
+_timer = NodePath("../Timer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sword" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_bop6l")
+}

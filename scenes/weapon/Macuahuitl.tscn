@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=3 uid="uid://b0a883mdusyfs"]
+
+[ext_resource type="PackedScene" uid="uid://cl7hdiq0ouaxj" path="res://scenes/prefab/weapon.tscn" id="1_sikke"]
+[ext_resource type="Texture2D" uid="uid://crd4f44ndjoa2" path="res://assets/other/steelBallRun.png" id="2_b0ya2"]
+[ext_resource type="PackedScene" uid="uid://cpgtyssnpsyx3" path="res://scenes/weapon/bullets/swing.tscn" id="2_voxja"]
+[ext_resource type="Script" uid="uid://dywhnsfqojub0" path="res://scripts/weapons/SwordAnim.cs" id="3_b0ya2"]
+[ext_resource type="Script" uid="uid://choqx1p57hu50" path="res://scripts/resourceDir/BulletResource.cs" id="3_wl1hi"]
+
+[sub_resource type="Resource" id="Resource_n84ha"]
+script = ExtResource("3_wl1hi")
+BaseDamage = 15.0
+bullet_scene = ExtResource("2_voxja")
+metadata/_custom_type_script = "uid://choqx1p57hu50"
+
+[sub_resource type="Animation" id="Animation_voxja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ggdlk"]
+resource_name = "swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.41, 0.54, 0.72),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, -10), Vector2(8, 0), Vector2(0, 0), Vector2(5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.41, 0.54, 0.72),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.9110619, 1.2217305, 1.0471976, -0.5235988]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.41, 0.54, 0.72),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.5462881, 0.2617994]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wl1hi"]
+_data = {
+&"RESET": SubResource("Animation_voxja"),
+&"swing": SubResource("Animation_ggdlk")
+}
+
+[node name="Macuahuitl" instance=ExtResource("1_sikke")]
+weaponType = 1
+bulletScene = [SubResource("Resource_n84ha")]
+baseDamage = 15.0
+
+[node name="Timer" parent="." index="0"]
+wait_time = 2.0
+
+[node name="SteelBallRun" type="Sprite2D" parent="." index="2" node_paths=PackedStringArray("animationPlayer", "_timer")]
+texture_filter = 3
+texture = ExtResource("2_b0ya2")
+offset = Vector2(16, -16)
+script = ExtResource("3_b0ya2")
+animationPlayer = NodePath("AnimationPlayer")
+_timer = NodePath("../Timer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SteelBallRun" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_wl1hi")
+}

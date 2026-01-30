@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpgtyssnpsyx3"]
+
+[ext_resource type="PackedScene" uid="uid://tnyfwg6cc6yi" path="res://scenes/prefab/bullet.tscn" id="1_6eloo"]
+[ext_resource type="Texture2D" uid="uid://chpihu8dei8nl" path="res://assets/other/swing.png" id="2_p8xjq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q6u05"]
+radius = 18.0
+
+[node name="Swing" instance=ExtResource("1_6eloo")]
+Damage = 4.0
+LifeTime = 0.5
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(1, 6)
+shape = SubResource("CircleShape2D_q6u05")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_p8xjq")

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://baunj4c63pjio" path="res://scenes/weapon/bow.tscn" id="2_kedd8"]
 
 [node name="AztecGirl" instance=ExtResource("1_v1gwx")]
+BaseSpeed = 90.0
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 scale = Vector2(2, 2)

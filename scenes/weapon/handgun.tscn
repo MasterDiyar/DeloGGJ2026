@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://b783basw3isaa"]
+
+[ext_resource type="PackedScene" uid="uid://cl7hdiq0ouaxj" path="res://scenes/prefab/weapon.tscn" id="1_ivnaj"]
+[ext_resource type="PackedScene" uid="uid://ihs1msglqwd" path="res://scenes/weapon/bullets/Bulbbullet.tscn" id="2_v4f3g"]
+[ext_resource type="Script" uid="uid://choqx1p57hu50" path="res://scripts/resourceDir/BulletResource.cs" id="3_ohy8y"]
+[ext_resource type="Texture2D" uid="uid://cdrfyuxutbyb7" path="res://assets/cumans/pushka.png" id="4_dkdfd"]
+
+[sub_resource type="Resource" id="Resource_d2u1l"]
+script = ExtResource("3_ohy8y")
+BaseDamage = 10.0
+bullet_scene = ExtResource("2_v4f3g")
+metadata/_custom_type_script = "uid://choqx1p57hu50"
+
+[node name="Handgun" instance=ExtResource("1_ivnaj")]
+bulletScene = [SubResource("Resource_d2u1l")]
+
+[node name="launcher" parent="." index="1"]
+isCentered = true
+betweenAngle = 0.04
+Offset = 10.0
+
+[node name="Pushka" type="Sprite2D" parent="." index="2"]
+texture_filter = 3
+texture = ExtResource("4_dkdfd")
+offset = Vector2(8, -2)

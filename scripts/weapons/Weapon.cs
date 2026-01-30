@@ -17,7 +17,7 @@ public partial class Weapon : Node2D
 	Launcher launcher;
 	public override void _Ready()
 	{
-		launcher = GetNode<Launcher>("Launcher");
+		launcher = GetNode<Launcher>("launcher");
 		myUnit = GetParent() as Unit;
 		fireTimer = GetNode<Timer>("Timer");
 		fireTimer.Timeout += Timeout;
@@ -45,7 +45,6 @@ public partial class Weapon : Node2D
 				res.LaunchCount += myUnit.modifiers.AddProjectile;
 			}
 		}
-		launcher.
 	}
 
 	protected virtual void Timeout()

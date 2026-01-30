@@ -3,6 +3,7 @@ using Godot;
 
 namespace ggJAM228.scripts.resourceDir;
 
+[GlobalClass]
 public partial class UpgradeResource : Resource
 {
     [Export]

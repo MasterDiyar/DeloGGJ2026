@@ -1,14 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://d27j652ffmfdl"]
+[gd_scene load_steps=7 format=3 uid="uid://d27j652ffmfdl"]
 
 [ext_resource type="PackedScene" uid="uid://7pq2cqno2bwj" path="res://scenes/units/playerthings/choose_card.tscn" id="1_vvbtb"]
 [ext_resource type="Texture2D" uid="uid://cut80p3low7ye" path="res://assets/masks/steelzabralo.png" id="2_8hasb"]
 [ext_resource type="Resource" uid="uid://c3vse57ouvjh7" path="res://scenes/resources/upgrade.tres" id="2_gky6v"]
+[ext_resource type="Script" uid="uid://bi78lxympvcrh" path="res://scripts/resourceDir/UpgradeResource.cs" id="3_gky6v"]
+
+[sub_resource type="Resource" id="Resource_u4557"]
+script = ExtResource("3_gky6v")
+metadata/_custom_type_script = "uid://bi78lxympvcrh"
 
 [sub_resource type="LabelSettings" id="LabelSettings_gky6v"]
 font_color = Color(1, 0, 0, 1)
 
 [node name="ChooseCard" instance=ExtResource("1_vvbtb")]
 upgradeResource = ExtResource("2_gky6v")
+downgradeResource = SubResource("Resource_u4557")
 
 [node name="Name" parent="VBoxContainer" index="0"]
 text = "Рыцарство"
@@ -24,3 +30,4 @@ text = "Ближний бой +5
 layout_mode = 2
 text = "Cкорость -20п/с"
 label_settings = SubResource("LabelSettings_gky6v")
+horizontal_alignment = 1

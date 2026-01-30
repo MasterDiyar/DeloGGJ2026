@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5pvrx4jslpvs"]
+
+[ext_resource type="PackedScene" uid="uid://7pq2cqno2bwj" path="res://scenes/units/playerthings/choose_card.tscn" id="1_tqitw"]
+[ext_resource type="Script" uid="uid://iipo52yyksmi" path="res://scripts/upgrades/Wolfenstein.cs" id="2_bkgn3"]
+[ext_resource type="Texture2D" uid="uid://nshm6qx5gtp4" path="res://assets/masks/wolfMask.png" id="3_586p5"]
+[ext_resource type="Script" uid="uid://bi78lxympvcrh" path="res://scripts/resourceDir/UpgradeResource.cs" id="3_bkgn3"]
+
+[sub_resource type="Resource" id="Resource_586p5"]
+script = ExtResource("3_bkgn3")
+AddSpeed = 15.0
+metadata/_custom_type_script = "uid://bi78lxympvcrh"
+
+[sub_resource type="Resource" id="Resource_xqxx5"]
+script = ExtResource("3_bkgn3")
+metadata/_custom_type_script = "uid://bi78lxympvcrh"
+
+[sub_resource type="LabelSettings" id="LabelSettings_xqxx5"]
+font_size = 14
+
+[node name="Wolfenstein" instance=ExtResource("1_tqitw")]
+script = ExtResource("2_bkgn3")
+upgradeResource = SubResource("Resource_586p5")
+downgradeResource = SubResource("Resource_xqxx5")
+
+[node name="Name" parent="VBoxContainer" index="0"]
+text = "Дух предков"
+
+[node name="Texture" parent="VBoxContainer" index="1"]
+texture = ExtResource("3_586p5")
+
+[node name="About" parent="VBoxContainer" index="2"]
+text = "Усиление меча
+(вампиризм)
+Скорость +15"
+label_settings = SubResource("LabelSettings_xqxx5")
